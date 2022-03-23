@@ -1,0 +1,17 @@
+To do list
+
+Overføre mellem 2 konti:
+
+Konto med bevilliget overtræk: (Tænker at det måske kan gøres ved at give
+Kontoklassen en int mere, som angiver hvor meget man må trække over
+
+Fælleskonto: Give Kontoklassen en Arrasyliste<String> variabel med brugere
+
+Gem transaktioner: Give Kontoklassen en Linkedlist hvor transaktionerne gemmes i.
+
+Kontroller for gentagne log in forsøg:
+
+Tænk over hvordan vi viser, at det virker
+
+Done:
+Gør så der er direkte adgang til gemte konti, hvis muligt

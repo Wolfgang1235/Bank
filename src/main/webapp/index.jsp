@@ -3,35 +3,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Business Banken forside</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-<br>
-<br>
+
+<h1>Business Banken</h1>
+
+<%--<a href="hello-servlet">Hello Servlet</a>--%>
 ${requestScope.msg}
-<br>
-<br>
 ${requestScope.fejl}
-<br>
-<br>
 <br>
 <br>
 
 <c:forEach items="${applicationScope.kontiMap}" var="item">
-    ${item.value.navn} : ${item.value.saldo}
+    ${item.value.navn} : ${item.value.saldo}  : kontonr ${item.value.kontoNummer} : pwd ${item.value.kode}
     <br>
 </c:forEach>
-
+<br>
 <form action="LogIn">
-    <label for="fname">Angiv navnet på kontohaver:</label><br>
-    <input type="text" id="fname" name="navn" value="denis"><br>
+    <label for="fname">Angiv navn på kontohaver:</label><br>
+    <input type="text" id="fname" name="navn" value="long"><br>
     <label for="lname">Skriv kode:</label><br>
     <input type="text" id="lname" name="koden" value="1"><br><br>
-    <input type="submit" value="login">
+    <input type="submit" value="log in">
+</form>
+<br>
+<br>
+
+<form action=ServletOpretBruger>
+    <input type="submit" value="Opret ny bruger" name="handling"/>
 </form>
 
 </body>
