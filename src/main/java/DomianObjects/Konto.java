@@ -25,11 +25,10 @@ public class Konto {
 
 
     public int indsæt(int i) {
-//        if (i > 0) {
-//        saldo = saldo + i;
-//      }
-//        return saldo;
-        return (i>0) ? saldo+i : saldo;
+        if (i > 0) {
+        saldo = saldo + i;
+      }
+        return saldo;
     }
 
     public int hæv(int i) {
@@ -37,9 +36,8 @@ public class Konto {
             return saldo;
         }
 
-        if (i > 0) {
-            saldo = saldo - i;
-        }
+        saldo = saldo - i;
+
         return saldo;
     }
 }
