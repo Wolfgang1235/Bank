@@ -11,7 +11,7 @@ class KontoTest {
 
     @BeforeEach
     void setUp() {
-        konto = new Konto("and","c00l",100);
+        konto = new Konto("and","c00l",1,100);
     }
 
     @Test
