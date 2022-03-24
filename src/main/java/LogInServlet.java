@@ -1,9 +1,12 @@
 import DomianObjects.Konto;
+import DomianObjects.TransaktionsListe;
+import DomianObjects.TransaktionsObjekt;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,12 +18,12 @@ public class LogInServlet extends HttpServlet {
     Map<String, Konto> kontiMap = new TreeMap<>();
 
     public void init() {
-        Konto konto1 = new Konto("nicolai","1",101,150);
-        Konto konto2 = new Konto("denis","1",102,15);
-        Konto konto3 = new Konto("betyl","1",103,170);
-        Konto konto4 = new Konto("long","1",104,15);
-        Konto konto5 = new Konto("kristoffer","1",105,1500);
-        Konto konto6 = new Konto("søren","1",106,2157);
+        Konto konto1 = new Konto("nicolai","1",101,150,new TransaktionsListe(new ArrayList<>()));
+        Konto konto2 = new Konto("denis","1",102,15,new TransaktionsListe(new ArrayList<>()));
+        Konto konto3 = new Konto("betyl","1",103,170,new TransaktionsListe(new ArrayList<>()));
+        Konto konto4 = new Konto("long","1",104,15,new TransaktionsListe(new ArrayList<>()));
+        Konto konto5 = new Konto("kristoffer","1",105,1500,new TransaktionsListe(new ArrayList<>()));
+        Konto konto6 = new Konto("søren","1",106,2157,new TransaktionsListe(new ArrayList<>()));
 
         kontiMap.put(konto1.getNavn(),konto1);
         kontiMap.put(konto2.getNavn(),konto2);
@@ -30,10 +33,6 @@ public class LogInServlet extends HttpServlet {
         kontiMap.put(konto6.getNavn(),konto6);
 
     }
-
-
-
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

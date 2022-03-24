@@ -3,6 +3,8 @@ package DomianObjects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class KontoTest {
@@ -11,7 +13,7 @@ class KontoTest {
 
     @BeforeEach
     void setUp() {
-        konto = new Konto("and","c00l",1,100);
+        konto = new Konto("and","c00l",1,100,new TransaktionsListe(new ArrayList<>()));
     }
 
     @Test
