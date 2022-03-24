@@ -31,14 +31,14 @@ public class LogInServlet extends HttpServlet {
         kontiMap.put(konto5.getNavn(),konto5);
         kontiMap.put(konto6.getNavn(),konto6);
 
-        konto1.getBrugerListe().addToBrugerList(konto1.getNavn());
-        konto1.getBrugerListe().addToBrugerList(konto2.getNavn());
-        konto2.getBrugerListe().addToBrugerList(konto2.getNavn());
-        konto3.getBrugerListe().addToBrugerList(konto3.getNavn());
-        konto4.getBrugerListe().addToBrugerList(konto4.getNavn());
-        konto5.getBrugerListe().addToBrugerList(konto5.getNavn());
-        konto6.getBrugerListe().addToBrugerList(konto6.getNavn());
-        konto6.getBrugerListe().addToBrugerList(konto1.getNavn());
+        konto1.getBrugerListe().addToBrugerList(konto1.getKontoNummer());
+        konto1.getBrugerListe().addToBrugerList(konto2.getKontoNummer());
+        konto2.getBrugerListe().addToBrugerList(konto2.getKontoNummer());
+        konto3.getBrugerListe().addToBrugerList(konto3.getKontoNummer());
+        konto4.getBrugerListe().addToBrugerList(konto4.getKontoNummer());
+        konto5.getBrugerListe().addToBrugerList(konto5.getKontoNummer());
+        konto6.getBrugerListe().addToBrugerList(konto6.getKontoNummer());
+        konto6.getBrugerListe().addToBrugerList(konto1.getKontoNummer());
 
     }
 

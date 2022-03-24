@@ -16,7 +16,7 @@ ${requestScope.fejl}
 <br>
 
 <c:forEach items="${applicationScope.kontiMap}" var="item">
-    ${item.value.navn} : ${item.value.saldo}  : kontonr ${item.value.kontoNummer} : pwd ${item.value.kode} : kassekredit ${item.value.kasseKredit}
+    ${item.value.navn} : ${item.value.saldo}  : kontonr ${item.value.kontoNummer} : pwd ${item.value.kode} : brugere ${item.value.brugerListe} : kassekredit ${item.value.kasseKredit}
     : ${item.value.transaktionsListe}
     <br>
 </c:forEach>

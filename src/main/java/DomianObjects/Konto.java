@@ -53,8 +53,9 @@ public class Konto {
         return transaktionsListe;
     }
 
-    public int indsæt(int i, String navn) {
-        if (!brugerListe.checkBrugerInList(navn)) {
+    public int indsæt(int i, Integer kontoNummer) {
+
+        if (!brugerListe.checkBrugerInList(kontoNummer)) {
             return saldo;
         }
 
@@ -70,8 +71,8 @@ public class Konto {
         return saldo;
     }
 
-    public int hæv(int i, String navn) {
-        if (!brugerListe.checkBrugerInList(navn)) {
+    public int hæv(int i, Integer kontonummer) {
+        if (!brugerListe.checkBrugerInList(kontonummer)) {
             return saldo;
         }
 
@@ -92,15 +93,15 @@ public class Konto {
 
     }
 
-    public boolean overførTilAndenKonto(Map<String,Konto> konti, int kontoNummer, int i, String navn) {
+    public boolean overførTilAndenKonto(Map<String,Konto> konti, int kontoNummer, int i, Integer indsætKontonummer) {
         List<Integer> kontoNumre = new ArrayList<>();
         konti.forEach((k,v) -> {
             kontoNumre.add(v.kontoNummer);
         });
-        if (!kontoNumre.contains(kontoNummer)) {
+        if (!kontoNumre.contains(indsætKontonummer)) {
             return false;
         }
-        this.hæv(i,navn);
+        this.hæv(i,kontoNummer);
 
         return true;
     }

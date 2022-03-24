@@ -58,8 +58,10 @@ public class ServletOpretBruger extends HttpServlet {
             }
 
             Konto nyKonto = new Konto(request.getParameter("navn"),request.getParameter("pwd1"),nytKontonummer,0,0,new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
+            nyKonto.getBrugerListe().addToBrugerList(nytKontonummer);
             kontoMap.put(navn,nyKonto);
 
+            session.setAttribute("konto",nyKonto);
             servletContext.setAttribute("kontiMap",kontoMap);
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }

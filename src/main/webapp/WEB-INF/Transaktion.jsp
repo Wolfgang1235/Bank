@@ -11,10 +11,13 @@
     <title>Title</title>
 </head>
 <body>
+
+<h2>    ${requestScope.fejl}  </h2>
+<br>
 <form action="TransaktionServlet">
 
     <label>Angiv konto nummer</label><br>
-    <input type="text" id="${sessionScope.handling}" name="kontonr" value="${sessionScope.kontoNummer}"><br>
+    <input type="text" id="${sessionScope.indsætNummer}" name="kontonr" value="${sessionScope.kontoNummer}"><br>
     <label for="${sessionScope.handling}">Angiv beløb som du vil ${sessionScope.handling}:</label><br>
     <input type="text" id="${sessionScope.handling}" name="beløb" value=0 ><br>
     <input type="submit" value="${sessionScope.handling}" name="handling">
