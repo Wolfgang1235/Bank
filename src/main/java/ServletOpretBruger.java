@@ -1,3 +1,4 @@
+import DomianObjects.BrugerListe;
 import DomianObjects.Konto;
 import DomianObjects.TransaktionsListe;
 import DomianObjects.TransaktionsObjekt;
@@ -56,7 +57,7 @@ public class ServletOpretBruger extends HttpServlet {
                 nytKontonummer =100+ rnd.nextInt((kontoNumre.size()*2)+1);
             }
 
-            Konto nyKonto = new Konto(request.getParameter("navn"),request.getParameter("pwd1"),nytKontonummer,0,new TransaktionsListe(new ArrayList<>()));
+            Konto nyKonto = new Konto(request.getParameter("navn"),request.getParameter("pwd1"),nytKontonummer,0,0,new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
             kontoMap.put(navn,nyKonto);
 
             servletContext.setAttribute("kontiMap",kontoMap);

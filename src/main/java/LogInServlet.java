@@ -1,3 +1,4 @@
+import DomianObjects.BrugerListe;
 import DomianObjects.Konto;
 import DomianObjects.TransaktionsListe;
 import DomianObjects.TransaktionsObjekt;
@@ -16,12 +17,12 @@ public class LogInServlet extends HttpServlet {
     Map<String, Konto> kontiMap = new TreeMap<>();
 
     public void init() {
-        Konto konto1 = new Konto("nicolai","1",101,150,new TransaktionsListe(new ArrayList<>()));
-        Konto konto2 = new Konto("denis","1",102,15,new TransaktionsListe(new ArrayList<>()));
-        Konto konto3 = new Konto("betyl","1",103,170,new TransaktionsListe(new ArrayList<>()));
-        Konto konto4 = new Konto("long","1",104,15,new TransaktionsListe(new ArrayList<>()));
-        Konto konto5 = new Konto("kristoffer","1",105,1500,new TransaktionsListe(new ArrayList<>()));
-        Konto konto6 = new Konto("søren","1",106,2157,new TransaktionsListe(new ArrayList<>()));
+        Konto konto1 = new Konto("nicolai","1",101,150,0, new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
+        Konto konto2 = new Konto("denis","1",102,15,2000, new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
+        Konto konto3 = new Konto("betyl","1",103,170,0, new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
+        Konto konto4 = new Konto("long","1",104,15,5000, new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
+        Konto konto5 = new Konto("kristoffer","1",105,1500,0, new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
+        Konto konto6 = new Konto("søren","1",106,2157,10000, new BrugerListe(new ArrayList<>()),new TransaktionsListe(new ArrayList<>()));
 
         kontiMap.put(konto1.getNavn(),konto1);
         kontiMap.put(konto2.getNavn(),konto2);
@@ -29,6 +30,15 @@ public class LogInServlet extends HttpServlet {
         kontiMap.put(konto4.getNavn(),konto4);
         kontiMap.put(konto5.getNavn(),konto5);
         kontiMap.put(konto6.getNavn(),konto6);
+
+        konto1.getBrugerListe().addToBrugerList(konto1.getNavn());
+        konto1.getBrugerListe().addToBrugerList(konto2.getNavn());
+        konto2.getBrugerListe().addToBrugerList(konto2.getNavn());
+        konto3.getBrugerListe().addToBrugerList(konto3.getNavn());
+        konto4.getBrugerListe().addToBrugerList(konto4.getNavn());
+        konto5.getBrugerListe().addToBrugerList(konto5.getNavn());
+        konto6.getBrugerListe().addToBrugerList(konto6.getNavn());
+        konto6.getBrugerListe().addToBrugerList(konto1.getNavn());
 
     }
 

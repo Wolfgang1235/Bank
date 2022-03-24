@@ -16,6 +16,10 @@ public class TransaktionServlet extends HttpServlet {
         Konto konto = (Konto) session.getAttribute("konto");
         log("handling "+ handling);
 
+        String navn = (String) session.getAttribute("navn");
+        int kontoNummer = konto.getKontoNummer();
+        session.setAttribute("kontoNummer",kontoNummer);
+
         String beløb = request.getParameter("beløb");
 
         log("beløb "+beløb);
@@ -40,7 +44,7 @@ public class TransaktionServlet extends HttpServlet {
                 if (beløb != null) {
 
                     //amount = Integer.parseInt(beløb);
-                    konto.indsæt(amount);
+                    konto.indsæt(amount,navn);
                     session.setAttribute("konto", konto);
 
                     request.getRequestDispatcher("WEB-INF/BrugerSide.jsp").forward(request,response);
@@ -53,7 +57,7 @@ public class TransaktionServlet extends HttpServlet {
                 System.out.println("hæve");
 
                 if (beløb !=null) {
-                    konto.hæv(amount);
+                    konto.hæv(amount,navn);
                     session.setAttribute("konto",konto);
                     request.getRequestDispatcher("WEB-INF/BrugerSide.jsp").forward(request,response);
 
@@ -130,7 +134,7 @@ public class TransaktionServlet extends HttpServlet {
         String beløb = request.getParameter("beloeb1");
         log("Beløb er " + beløb);
         HttpSession session = request.getSession();
-
+        String navn = (String) session.getAttribute("navn");
         int amount = 0;
 
         try {
@@ -144,11 +148,10 @@ public class TransaktionServlet extends HttpServlet {
 
         Konto konto = (Konto) session.getAttribute("konto");
 
-        konto.hæv(amount);
+        konto.hæv(amount,navn);
 
         session.setAttribute("konto", konto);
         request.getRequestDispatcher("WEB-INF/BrugerSide.jsp").forward(request,response);
-
 
     }
 }

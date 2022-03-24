@@ -44,7 +44,7 @@ public class ServletLogAf extends HttpServlet {
 
                 Konto old = kontis.get(navn);
 
-                Konto nytPasswordKonto = new Konto(navn, request.getParameter("pwd1"), old.getKontoNummer(), old.getSaldo(),old.getTransaktionsListe());
+                Konto nytPasswordKonto = new Konto(navn, request.getParameter("pwd1"), old.getKontoNummer(), old.getSaldo(),old.getKasseKredit(),old.getBrugerListe(),old.getTransaktionsListe());
                 kontis.put(navn, nytPasswordKonto);
 
                 servletContext.setAttribute("kontiMap", kontis);

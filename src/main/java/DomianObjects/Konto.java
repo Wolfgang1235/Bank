@@ -10,13 +10,18 @@ public class Konto {
     private String kode;
     private int kontoNummer;
     private int saldo;
+    private int kasseKredit;
+    private BrugerListe brugerListe;
     private TransaktionsListe transaktionsListe;
 
-    public Konto(String navn, String kode, int kontoNummer, int saldo, TransaktionsListe transaktionsListe) {
+    public Konto(String navn, String kode, int kontoNummer, int saldo, int kasseKredit,
+                 BrugerListe brugerListe,TransaktionsListe transaktionsListe) {
         this.navn = navn;
         this.kode = kode;
         this.kontoNummer = kontoNummer;
         this.saldo = saldo;
+        this.kasseKredit = kasseKredit;
+        this.brugerListe = brugerListe;
         this.transaktionsListe = transaktionsListe;
     }
 
@@ -36,11 +41,23 @@ public class Konto {
         return saldo;
     }
 
+    public int getKasseKredit() {
+        return kasseKredit;
+    }
+
+    public BrugerListe getBrugerListe() {
+        return brugerListe;
+    }
+
     public TransaktionsListe getTransaktionsListe() {
         return transaktionsListe;
     }
 
-    public int indsæt(int i) {
+    public int indsæt(int i, String navn) {
+        if (!brugerListe.checkBrugerInList(navn)) {
+            return saldo;
+        }
+
         if (i > 0) {
             saldo = saldo + i;
 
@@ -53,8 +70,12 @@ public class Konto {
         return saldo;
     }
 
-    public int hæv(int i) {
-        if (i > saldo) {
+    public int hæv(int i, String navn) {
+        if (!brugerListe.checkBrugerInList(navn)) {
+            return saldo;
+        }
+
+        if (i > saldo + kasseKredit) {
             return saldo;
         }
         String dato = String.valueOf(LocalDate.now());
@@ -71,7 +92,7 @@ public class Konto {
 
     }
 
-    public boolean overførTilAndenKonto(Map<String,Konto> konti, int kontoNummer, int i) {
+    public boolean overførTilAndenKonto(Map<String,Konto> konti, int kontoNummer, int i, String navn) {
         List<Integer> kontoNumre = new ArrayList<>();
         konti.forEach((k,v) -> {
             kontoNumre.add(v.kontoNummer);
@@ -79,7 +100,7 @@ public class Konto {
         if (!kontoNumre.contains(kontoNummer)) {
             return false;
         }
-        this.hæv(i);
+        this.hæv(i,navn);
 
         return true;
     }
