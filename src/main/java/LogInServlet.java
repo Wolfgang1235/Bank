@@ -13,8 +13,6 @@ import java.util.TreeMap;
 @WebServlet(name = "LogIn", value = "/LogIn")
 public class LogInServlet extends HttpServlet {
 
-
-
     Map<String, Konto> kontiMap = new TreeMap<>();
 
     public void init() {
@@ -40,11 +38,11 @@ public class LogInServlet extends HttpServlet {
         String navn = request.getParameter("navn");
         String kode = request.getParameter("koden");
 
+        HttpSession session = request.getSession();
         ServletContext servletContext = getServletContext();
         servletContext.setAttribute("kontiMap",kontiMap);
 
         if (getServletContext().getAttribute("kontiMap") == null) {
-
 
         }
 
@@ -61,16 +59,40 @@ public class LogInServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }
 
-        if (!konto.getKode().equals(kode)) {
 
+        int forsøg = 0;
+        log("Antal forsøg før try/catch"+forsøg);
+        try {
+            forsøg = Integer.parseInt(String.valueOf( session.getAttribute("forsøg")));
+            log("Efter try/catch"+forsøg);
+        } catch (NumberFormatException e) {
+            forsøg = 0;
+        }
 
+        while (forsøg < 3 && !konto.getKode().equals(kode)) {
+            if (!konto.getKode().equals(kode)) {
 
-            fejlBesked = "dit password er forkert, prøv igen";
+                fejlBesked = "dit password er forkert, prøv igen";
+                request.setAttribute("fejl",fejlBesked);
+                forsøg++;
+                session.setAttribute("forsøg",forsøg);
+                log("Vi er i while loopet "+forsøg);
+                request.getRequestDispatcher("index.jsp").forward(request,response);
+            }
+        }
+
+        if (konto.getKode().equals(kode)) {
+            forsøg = 0;
+            session.setAttribute("forsøg",forsøg);
+        }
+
+        if (forsøg==3) {
+            fejlBesked = "Din tåbe nu har du forsøgt 3 gange...helt ærligt mand/dame";
             request.setAttribute("fejl",fejlBesked);
 
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }
-        HttpSession session = request.getSession();
+        session = request.getSession();
         session.setAttribute("navn",navn);
         session.setAttribute("konto",konto);
 

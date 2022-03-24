@@ -7,14 +7,12 @@ Kontoklassen en int mere, som angiver hvor meget man må trække over
 
 Fælleskonto: Give Kontoklassen en Arrasyliste<String> variabel med brugere
 
-Gem transaktioner: Give Kontoklassen en Arraylist hvor transaktionerne gemmes i.
-
-Kontroller for gentagne log in forsøg:
-
 Tænk over hvordan vi viser, at det virker
 
-Done:
+Done Bravo:
 Gør så der er direkte adgang til gemte konti, hvis muligt
+Gem transaktioner: Give Kontoklassen en Arraylist hvor transaktionerne gemmes i.
+Kontroller for gentagne log in forsøg:
 
 Test...
 
