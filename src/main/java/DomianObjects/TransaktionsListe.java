@@ -20,7 +20,6 @@ public class TransaktionsListe {
         for (TransaktionsObjekt transaktionsObjekt : transaktionsObjekts) {
             res += transaktionsObjekt.toString() + " ";
         }
-
         return res;
     }
 }

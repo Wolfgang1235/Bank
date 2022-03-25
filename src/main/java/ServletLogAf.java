@@ -4,7 +4,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 @WebServlet(name = "ServletLogAf", value = "/ServletLogAf")
@@ -18,11 +17,9 @@ public class ServletLogAf extends HttpServlet {
         String opdaterProfil = request.getParameter("handling");
         String fejlBesked;
 
-
         if (opdaterProfil != null && opdaterProfil.equals("slet konto")) {
             Map<String, Konto> kontis = (Map<String, Konto>) getServletContext().getAttribute("kontiMap");
             String navn = (String) session.getAttribute("navn");
-
             kontis.remove(navn);
 
             servletContext.setAttribute("kontiMap",kontis);
@@ -38,27 +35,21 @@ public class ServletLogAf extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/ProfilSetting.jsp").forward(request,response);
             }
             else {
-
                 Map<String, Konto> kontis = (Map<String, Konto>) getServletContext().getAttribute("kontiMap");
                 String navn = (String) session.getAttribute("navn");
-
                 Konto old = kontis.get(navn);
 
                 Konto nytPasswordKonto = new Konto(navn, request.getParameter("pwd1"), old.getKontoNummer(), old.getSaldo(),old.getKasseKredit(),old.getBrugerListe(),old.getTransaktionsListe());
                 kontis.put(navn, nytPasswordKonto);
-
                 servletContext.setAttribute("kontiMap", kontis);
-
             }
         }
 
         request.getSession().invalidate();
         request.getRequestDispatcher("index.jsp").forward(request,response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

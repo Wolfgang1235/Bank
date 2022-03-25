@@ -60,7 +60,6 @@ public class LogInServlet extends HttpServlet {
 
         String fejlBesked;
 
-
         Konto konto = kontoMap.getOrDefault(navn, null);
         if (konto == null) {
             fejlBesked = "Kontoen fandtes ikke";
@@ -68,7 +67,6 @@ public class LogInServlet extends HttpServlet {
 
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }
-
 
         int forsøg = 0;
         log("Antal forsøg før try/catch"+forsøg);
@@ -107,11 +105,9 @@ public class LogInServlet extends HttpServlet {
         session.setAttribute("konto",konto);
 
         request.getRequestDispatcher("WEB-INF/BrugerSide.jsp").forward(request,response);
-        //
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

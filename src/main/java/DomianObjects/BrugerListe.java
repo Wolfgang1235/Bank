@@ -27,7 +27,6 @@ public class BrugerListe {
         for (Integer i : brugere) {
             res += i + " ";
         }
-
         return res;
     }
 }

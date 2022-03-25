@@ -61,13 +61,9 @@ public class Konto {
 
         if (i > 0) {
             saldo = saldo + i;
-
             String dato = String.valueOf(LocalDate.now());
-
             insertTransactionList(new TransaktionsObjekt(dato,i,saldo));
         }
-
-
         return saldo;
     }
 
@@ -75,22 +71,18 @@ public class Konto {
         if (!brugerListe.checkBrugerInList(kontonummer)) {
             return saldo;
         }
-
         if (i > saldo + kasseKredit) {
             return saldo;
         }
         String dato = String.valueOf(LocalDate.now());
-
         saldo = saldo - i;
 
         insertTransactionList(new TransaktionsObjekt(dato,i,saldo));
-
         return saldo;
     }
 
     public void insertTransactionList(TransaktionsObjekt transaktionsObjekt) {
         transaktionsListe.addToList(transaktionsObjekt);
-
     }
 
     public boolean overførTilAndenKonto(Map<String,Konto> konti, int beløb, Integer indsætPåKontonummer) {
@@ -106,7 +98,6 @@ public class Konto {
         }
         this.hæv(beløb,kontoNummer);
         Konto indsætPå;
-
         for (Map.Entry<String,Konto> entry : konti.entrySet()) {
 
             int find =  entry.getValue().getKontoNummer();
@@ -115,7 +106,6 @@ public class Konto {
                 indsætPå.indsæt(beløb,indsætPåKontonummer);
             }
         }
-
         return true;
     }
 }

@@ -9,7 +9,6 @@
 
 <h1>Business Banken</h1>
 
-<%--<a href="hello-servlet">Hello Servlet</a>--%>
 ${requestScope.msg}
 ${requestScope.fejl}
 <br>
