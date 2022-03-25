@@ -93,15 +93,28 @@ public class Konto {
 
     }
 
-    public boolean overførTilAndenKonto(Map<String,Konto> konti, int kontoNummer, int i, Integer indsætKontonummer) {
+    public boolean overførTilAndenKonto(Map<String,Konto> konti, int beløb, Integer indsætPåKontonummer) {
         List<Integer> kontoNumre = new ArrayList<>();
         konti.forEach((k,v) -> {
             kontoNumre.add(v.kontoNummer);
         });
-        if (!kontoNumre.contains(indsætKontonummer)) {
+        if (!kontoNumre.contains(indsætPåKontonummer)) {
             return false;
         }
-        this.hæv(i,kontoNummer);
+        if (beløb > saldo) {
+            return false;
+        }
+        this.hæv(beløb,kontoNummer);
+        Konto indsætPå;
+
+        for (Map.Entry<String,Konto> entry : konti.entrySet()) {
+
+            int find =  entry.getValue().getKontoNummer();
+            if (find == indsætPåKontonummer) {
+                indsætPå = entry.getValue();
+                indsætPå.indsæt(beløb,indsætPåKontonummer);
+            }
+        }
 
         return true;
     }

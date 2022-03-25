@@ -116,6 +116,27 @@ public class TransaktionServlet extends HttpServlet {
             case "overførTilAndenKonto":
                 System.out.println("overførTilAndenKonto");
 
+                if (beløb !=null) {
+
+                    for (Entry<String,Konto> entry : kontoMap.entrySet()) {
+
+                        int find =  entry.getValue().getKontoNummer();
+
+                        if (find == Integer.parseInt(indsætTilKonto)) {
+                            indsætPåKonto = entry.getValue();
+
+                            kontoLoggetPå.overførTilAndenKonto(kontoMap,amount,indsætPåKonto.getKontoNummer());
+
+                            //indsætPåKonto.hæv(amount,indsætterNummer);
+                        }
+                    }
+                    //kontoLoggetPå.hæv(amount,indsætterNummer);
+                    session.setAttribute("konto",kontoLoggetPå);
+                    request.getRequestDispatcher("WEB-INF/BrugerSide.jsp").forward(request,response);
+
+                }
+
+
                 session.setAttribute("handling",handling);
                 request.getRequestDispatcher("WEB-INF/Transaktion.jsp").forward(request,response);
 
